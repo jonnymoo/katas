@@ -1,16 +1,20 @@
 import { IAccountService } from './IAccountService';
+import { IPrinter } from './IPrinter';
 
 class AccountService implements IAccountService{
+
+    constructor(private readonly printer: IPrinter) {};
+
     deposit(amount: number): void {
-      console.log(`Depositing ${amount}`);
+      this.printer.log(`Depositing ${amount}`);
     }
   
     withdraw(amount: number): void {
-      console.log(`Withdrawing ${amount}`);
+      this.printer.log(`Withdrawing ${amount}`);
     }
   
     printStatement(): void {
-      console.log(`Printing statement`);
+      this.printer.log(`Printing statement`);
     }
   }
   

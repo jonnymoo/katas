@@ -1,25 +1,27 @@
-import { IAccountService } from '../src/IAccountService'; // Assuming IAccountService.ts is in the same directory as your test file
-import { AccountService } from '../src/AccountService'; // Assuming src/account.service.ts is the path to your class
+import { IAccountService } from '../src/IAccountService'; 
+import { AccountService } from '../src/AccountService'; 
+import { IPrinter } from '../src/IPrinter';
 
 describe('AccountService', () => {
-    let accountService: IAccountService ; // Declare an instance of the interface
-  
-    beforeEach(() => {
-      accountService = new AccountService(); // Create a new instance of the service
-    });
-  
-    it('should be defined', () => {
-      expect(accountService).toBeDefined(); // Checks if the service is defined
-    });
-  
-    // Add more tests for each method:
-  
-    it('deposit should log a message', () => {
-      const spy = jest.spyOn(console, 'log'); // Mock console.log for testing
+
+  // A Simple Printer for us to use in our tests
+  class SimplePrinter implements IPrinter {
+    public Contents: string = '';
+    log(message: string): void {
+      this.Contents += `${this.Contents ? '\n' : ''}${message}`;
+    }
+  };
+
+
+  it('deposit should log a message', () => {
+
+    let printer : SimplePrinter = new SimplePrinter();
+
+      let accountService: IAccountService = new AccountService(printer);
   
       accountService.deposit(100);
   
-      expect(spy).toHaveBeenCalledWith('Depositing 100'); // Verify the logged message
+      expect(printer.Contents).toBe('Depositing 100'); // Verify the logged message
     });
   
   });

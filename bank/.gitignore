@@ -1,0 +1,35 @@
+# Node.js modules
+node_modules/
+
+# Build artifacts
+dist/
+
+# Coverage reports
+coverage/
+
+# Editor temporary/cache files
+.vscode/
+.idea/
+.cache/
+
+# Testing frameworks (modify if needed)
+jest/__tests__/__snapshots__/
+jest.config.js.snap
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.test
+
+# Text editor backups (modify if needed)
+*.bak
+*.swp
+
+# OS specific temporary files
+*.tmp
+*.log
+
+# Specific test configuration files (adjust as needed)
+test.env.local

@@ -11,10 +11,11 @@ class AccountService implements IAccountService{
       private readonly dateService : IDateService) {};
 
     deposit(amount: number): void {
+      // Create a transaction. The balance is calculated as the last balanace + the amount deposited
       const transaction: Transaction = {
         date: this.dateService.getDateNow(),
         amount: amount,
-        balance: amount,
+        balance: this.statement.length === 0 ? amount : this.statement[this.statement.length - 1].balance + amount
       };
       
       this.statement.push(transaction);

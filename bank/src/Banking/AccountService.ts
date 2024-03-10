@@ -22,6 +22,8 @@ class AccountService implements IAccountService{
     }
   
     withdraw(amount: number): void {
+      // Assume a withdraw is a negative deposit - note we don't check any negative balance currently
+      this.deposit(amount * -1);
     }
   
     printStatement(): void {

@@ -21,7 +21,17 @@ describe('ConsoleLogPrinter', () => {
 
     printer.printTable([{"Header1":"Value1","Header2":"Value2"}]);
 
-    expect(mockConsole.msg).toBe("Header1  || Header2  \nValue1   || Value2   \n");
+    expect(mockConsole.msg).toBe("Header1 || Header2 \nValue1  || Value2  \n");
+  });
+
+  it('Printer can handle dates', () => {
+
+    let mockConsole : MockConsole = new MockConsole();
+    let printer: ConsoleLogPrinter = new ConsoleLogPrinter(mockConsole);
+
+    printer.printTable([{"Header1":"Value1","Header2":new Date(2012,0,13)}]);
+
+    expect(mockConsole.msg).toBe("Header1 || Header2    \nValue1  || 13/01/2012 \n");
   });
 });
 

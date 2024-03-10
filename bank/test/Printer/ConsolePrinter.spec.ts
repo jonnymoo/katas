@@ -1,13 +1,6 @@
 import { ConsoleLogPrinter } from '../../src/Printer/ConsoleLogPrinter'
-import { IDateService } from '../../src/Utils/IDateService'
 
 describe('ConsoleLogPrinter', () => {
-
-  // A Date Service so we can mock out dates
-  class MockDateService implements IDateService {
-    constructor(private readonly now: Date) {};
-    getDateNow(): Date { return this.now; };
-  }
 
   class MockConsole {
     public msg: string = '';

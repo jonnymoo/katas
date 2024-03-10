@@ -1,7 +1,7 @@
 import { IAccountService } from '../../src/Banking/IAccountService';
 import { AccountService } from '../../src/Banking/AccountService';
 import { IPrinter } from '../../src/Printer/IPrinter';
-import { IDateService } from '../../src/Utils/IDateService'
+import { DateService } from '../../src/Utils/DateService'
 
 describe('AccountService', () => {
 
@@ -13,17 +13,10 @@ describe('AccountService', () => {
     public printedList : any[] = [];
   };
 
-  // A Date Service so we can mock out dates
-  class MockDateService implements IDateService {
-    constructor(private now: Date) {};
-    public getDateNow(): Date { return this.now; };
-    public updateDateNow(now: Date): void {this.now = now; }
-  }
-
   it('One deposit test', () => {
     // Given I deposit 100 I expect a transaction history of deposit 100 and a balance of 100    
     let printer: SimplePrinter = new SimplePrinter();
-    let dateService : MockDateService = new MockDateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
+    let dateService : DateService = new DateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
 
     let accountService: IAccountService = new AccountService(printer, dateService);
 
@@ -39,9 +32,9 @@ describe('AccountService', () => {
   });
 
   it('two deposit test', () => {
-    // Given I deposit 100 then 200 I expect a two transaction histories and a balance of 300    
+    // Given I deposit 100 then 200 I expect a two transaction histories and a balance of 300 ordered    
     let printer: SimplePrinter = new SimplePrinter();
-    let dateService : MockDateService = new MockDateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
+    let dateService : DateService = new DateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
 
     let accountService: IAccountService = new AccountService(printer, dateService);
 
@@ -67,7 +60,7 @@ describe('AccountService', () => {
   it('Withdraw test', () => {
     // Given I deposit 100 then withdraw 30 I expect a two transaction histories and a balance of 70    
     let printer: SimplePrinter = new SimplePrinter();
-    let dateService : MockDateService = new MockDateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
+    let dateService : DateService = new DateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
 
     let accountService: IAccountService = new AccountService(printer, dateService);
 

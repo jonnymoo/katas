@@ -54,7 +54,7 @@ This README provides instructions for running tests and compiling/running the co
 
 This will execute the code defined in the `main.ts` file.
 
-This is the acceptance test - you should get the followig output:
+This is the acceptance test - you should get the following output:
 
 ```
 Given a client makes a deposit of 1000 on 10/1/2012

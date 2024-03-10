@@ -32,7 +32,7 @@ describe('AccountService', () => {
   });
 
   it('two deposit test', () => {
-    // Given I deposit 100 then 200 I expect a two transaction histories and a balance of 300 ordered    
+    // Given I deposit 100 then 200 I expect a two transaction histories and a balance of 300 ordered date desc    
     let printer: SimplePrinter = new SimplePrinter();
     let dateService : DateService = new DateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
 
@@ -44,21 +44,21 @@ describe('AccountService', () => {
     accountService.printStatement();
 
     let statement: any = printer.printedList;
-    expect(statement[0].date.getFullYear()).toBe(2012);
-    expect(statement[0].date.getMonth()).toBe(0);
-    expect(statement[0].date.getDate()).toBe(10);
-    expect(statement[0].amount).toBe(100);
-    expect(statement[0].balance).toStrictEqual(100);
-
     expect(statement[1].date.getFullYear()).toBe(2012);
     expect(statement[1].date.getMonth()).toBe(0);
-    expect(statement[1].date.getDate()).toBe(11);
-    expect(statement[1].amount).toBe(200);
-    expect(statement[1].balance).toStrictEqual(300);
+    expect(statement[1].date.getDate()).toBe(10);
+    expect(statement[1].amount).toBe(100);
+    expect(statement[1].balance).toStrictEqual(100);
+
+    expect(statement[0].date.getFullYear()).toBe(2012);
+    expect(statement[0].date.getMonth()).toBe(0);
+    expect(statement[0].date.getDate()).toBe(11);
+    expect(statement[0].amount).toBe(200);
+    expect(statement[0].balance).toStrictEqual(300);
   });
 
   it('Withdraw test', () => {
-    // Given I deposit 100 then withdraw 30 I expect a two transaction histories and a balance of 70    
+    // Given I deposit 100 then withdraw 30 I expect a two transaction histories and a balance of 70 ordered date desc   
     let printer: SimplePrinter = new SimplePrinter();
     let dateService : DateService = new DateService(new Date(2012,0,10)); // 0 Indexed dates! Who knew. https://stackoverflow.com/questions/2552483/why-does-the-month-argument-range-from-0-to-11-in-javascripts-date-constructor
 
@@ -70,17 +70,17 @@ describe('AccountService', () => {
     accountService.printStatement();
 
     let statement: any = printer.printedList;
-    expect(statement[0].date.getFullYear()).toBe(2012);
-    expect(statement[0].date.getMonth()).toBe(0);
-    expect(statement[0].date.getDate()).toBe(10);
-    expect(statement[0].amount).toBe(100);
-    expect(statement[0].balance).toStrictEqual(100);
-
     expect(statement[1].date.getFullYear()).toBe(2012);
     expect(statement[1].date.getMonth()).toBe(0);
-    expect(statement[1].date.getDate()).toBe(11);
-    expect(statement[1].amount).toBe(-30);
-    expect(statement[1].balance).toStrictEqual(70);
+    expect(statement[1].date.getDate()).toBe(10);
+    expect(statement[1].amount).toBe(100);
+    expect(statement[1].balance).toStrictEqual(100);
+
+    expect(statement[0].date.getFullYear()).toBe(2012);
+    expect(statement[0].date.getMonth()).toBe(0);
+    expect(statement[0].date.getDate()).toBe(11);
+    expect(statement[0].amount).toBe(-30);
+    expect(statement[0].balance).toStrictEqual(70);
   });
 
 });
